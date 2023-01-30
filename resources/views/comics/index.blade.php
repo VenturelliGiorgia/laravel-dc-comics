@@ -23,7 +23,23 @@
             <td>{{ Str::limit($comic->description, 50) }}</td>
             <td>€ {{ $comic->price }}</td>
              <td>{{ $comic->type }}</td>
-
+            <td>
+                <a href="{{ route('comics.show', $comic->id) }}" >
+                    <button class="btn btn-info text-white">show</button>
+                </a>
+            </td>
+            <td>
+                <a href="{{ route('comics.edit', $comic->id) }}">
+                    <button class="btn btn-info text-white">edit</button>
+                </a>
+            </td>
+            <td>    
+                <form action="{{ route('comics.destroy', $comic->id) }}" method="POST" class="delete-form d-inline-block">
+                    @csrf()
+                    @method('delete')
+                    <button class="btn btn-danger">delate</button>
+                </form>
+            </td>
         </tr>
         @endforeach  
     </tbody>
