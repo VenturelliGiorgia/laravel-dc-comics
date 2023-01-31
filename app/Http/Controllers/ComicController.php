@@ -39,6 +39,16 @@ class ComicController extends Controller
     {
         $data = $request->all();
 
+        $data = $request->validate([
+            "title" => "required|min:1|max:255",
+            "description" => "required|string",
+            "thumb" => "required|url",
+            "price" => "required",
+            "series" => "required|string",
+            "sale_date" => "required",
+            "type" => "required|string",
+        ]);
+
         $comic = new Comic();
         $comic->title = $data["title"];
         $comic->description = $data["description"];
@@ -72,7 +82,7 @@ class ComicController extends Controller
     public function edit($id)
     {
         $comic = Comic::find($id);
-        if(!$comic){
+        if (!$comic) {
             abort(404, "non esiste");
         }
         return view("comics.edit", compact("comic"));
@@ -89,6 +99,17 @@ class ComicController extends Controller
     public function update(Request $request, Comic $comic)
     {
         $data = $request->all();
+
+        $data = $request->validate([
+            "title" => "required|min:2|max:255",
+            "description" => "required|string",
+            "thumb" => "required|url",
+            "price" => "required",
+            "series" => "required|string",
+            "sale_date" => "required",
+            "type" => "required|string",
+        ]);
+
         $comic->update($data);
         return redirect()->route('comics.show', $comic->id);
     }
