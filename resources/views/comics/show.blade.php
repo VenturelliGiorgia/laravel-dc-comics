@@ -6,9 +6,11 @@
         <h1 class="text-info">{{ $comic->title }}</h1>
     </div>
     <div class="row align-items-center">
-        <div class="col-auto">
-            <div>
-                <img src="{{ $comic->thumb }}" alt="" class="img-fluid">
+        <div class="col-2">
+            <div >
+                <img class="img-fluid" src="{{ $comic->thumb }}" alt="">
+
+
             </div>
         </div>
         <div class="col">
